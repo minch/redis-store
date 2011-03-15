@@ -67,6 +67,12 @@ module ActiveSupport
         end
       end
 
+      it "should show keys by matcher" do
+        with_store_management do |store|
+          store.keys("rabb*").should_not be_empty
+        end
+      end
+
       if ::Redis::Store.rails3?
         if RUBY_VERSION.match /1\.9/
           it "should read raw data" do

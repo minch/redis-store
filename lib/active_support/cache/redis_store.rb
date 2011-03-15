@@ -48,6 +48,12 @@ module ::RedisStore
         @data.exists key
       end
 
+      def keys(matcher, options =  nil)
+        instrument(:list, matcher, options) do
+          k = @data.keys matcher
+        end
+      end
+
       # Delete objects for matched keys.
       #
       # Example:
